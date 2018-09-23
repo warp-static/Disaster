@@ -6,3 +6,5 @@ add_executable(Disaster main.cpp)
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 
 find_package(SDL2)
+
+target_link_libraries(Disaster SDL2)
