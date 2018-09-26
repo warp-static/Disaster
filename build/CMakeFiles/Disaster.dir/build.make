@@ -79,6 +79,7 @@ Disaster_EXTERNAL_OBJECTS =
 
 Disaster: CMakeFiles/Disaster.dir/main.cpp.o
 Disaster: CMakeFiles/Disaster.dir/build.make
+Disaster: /usr/lib/x86_64-linux-gnu/libassimp.so
 Disaster: CMakeFiles/Disaster.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/richard/Disaster/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable Disaster"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Disaster.dir/link.txt --verbose=$(VERBOSE)

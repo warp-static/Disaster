@@ -14,6 +14,12 @@
 # EXTERNAL cache entries
 ########################
 
+//The directory where assimp/mesh.h resides
+ASSIMP_INCLUDE_DIRS:PATH=/usr/include
+
+//The ASSIMP library
+ASSIMP_LIBRARIES:FILEPATH=/usr/lib/x86_64-linux-gnu/libassimp.so
+
 //Path to a program.
 CMAKE_AR:FILEPATH=/usr/bin/ar
 
@@ -213,6 +219,12 @@ Disaster_BINARY_DIR:STATIC=/home/richard/Disaster/build
 
 //Value Computed by CMake
 Disaster_SOURCE_DIR:STATIC=/home/richard/Disaster
+
+//The directory where GL/glew.h resides
+GLEW_INCLUDE_DIRS:PATH=/usr/include
+
+//The GLEW library
+GLEW_LIBRARIES:FILEPATH=/usr/lib/x86_64-linux-gnu/libGLEW.so
 
 //The directory where SDL.h resides
 SDL2_INCLUDE_DIRS:PATH=/usr/include
