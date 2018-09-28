@@ -5,10 +5,12 @@ add_executable(Disaster main.cpp)
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 
+find_package(OpenGL)
+
 find_package(SDL2)
 
 find_package(GLEW)
 
 find_package(ASSIMP)
 
-target_link_libraries(Disaster SDL2 GLEW ${ASSIMP_LIBRARIES})
+target_link_libraries(Disaster ${OPENGL_LIBRARIES} SDL2 GLEW ${ASSIMP_LIBRARIES})

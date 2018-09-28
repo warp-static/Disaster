@@ -1,1 +1,1 @@
-/usr/bin/c++  -g   CMakeFiles/Disaster.dir/main.cpp.o  -o Disaster -lSDL2 -lGLEW /usr/lib/x86_64-linux-gnu/libassimp.so 
+/usr/bin/c++  -g   CMakeFiles/Disaster.dir/main.cpp.o  -o Disaster /usr/lib/x86_64-linux-gnu/libGL.so /usr/lib/x86_64-linux-gnu/libGLU.so -lSDL2 -lGLEW /usr/lib/x86_64-linux-gnu/libassimp.so 
