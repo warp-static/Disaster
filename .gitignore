@@ -77,10 +77,12 @@ Plugins/*/Binaries/*
 
 # Builds
 Build/*
+build/*
 
 # Whitelist PakBlacklist-<BuildConfiguration>.txt files
 # !Build/*/
 Build/*/**
+build/*/**
 # !Build/*/PakBlacklist*.txt
 
 # Don't ignore icon files in Build
