@@ -1,6 +1,8 @@
 #include <iostream>
 #include <SDL2/SDL.h>
 #include <GL/glew.h>
+#include <fstream>
+#include <iostream>
 
 #define fps 60
 
@@ -17,11 +19,56 @@ int main()
         std::cout << "failed to create SDL window" << std::endl << SDL_GetError() << std::endl;
     }
 
-    GLenum res = glewInit();
-
     SDL_GLContext glcontext = SDL_GL_CreateContext(window);
 
-    glClearColor(100, 0, 0, 1);
+    GLenum res = glewInit();
+
+    glClearColor(0, 0.4, 0, 0.5);
+
+    GLuint program = glCreateProgram();
+    GLuint vShader = glCreateShader(GL_VERTEX_SHADER);
+    GLuint fShader = glCreateShader(GL_FRAGMENT_SHADER);
+
+    std::string line;
+    std::ifstream vsFile;
+    vsFile.open("./basicShader.vs");
+    std::string vsFileText;
+    while(vsFile.good())
+    {
+        getline(vsFile, line);
+        vsFileText.append(line + "\n");
+    }
+    std::ifstream fsFile;
+    fsFile.open("./basicShader.fs");
+    std::string fsFileText;
+    while(fsFile.good())
+    {
+        getline(fsFile, line);
+        fsFileText.append(line + "\n");
+    }
+
+    const GLchar* vsText[1];
+    const GLchar* fsText[1];
+    GLint vsTextLength[1];
+    GLint fsTextLength[1];
+    vsText[0] = vsFileText.c_str();
+    fsText[0] = fsFileText.c_str();
+    vsTextLength[0] = vsFileText.length();
+    fsTextLength[0] = fsFileText.length();
+
+    glShaderSource(vShader, 1, vsText, vsTextLength);
+    glShaderSource(fShader, 1, fsText, fsTextLength);
+    glCompileShader(vShader);
+    glCompileShader(fShader);
+
+    glAttachShader(program, vShader);
+    glAttachShader(program, fShader);
+
+    glBindAttribLocation(program, 0, "position");
+
+    glLinkProgram(program);
+    glValidateProgram(program);
+    glUseProgram(program);
 
     unsigned int starting_tick;
     bool running = true;
@@ -47,6 +94,13 @@ int main()
             SDL_Delay(1000 / fps - (SDL_GetTicks() - starting_tick));
         }
     }
+
+    glDetachShader(program, vShader);
+    glDeleteShader(vShader);
+    glDetachShader(program, fShader);
+    glDeleteShader(fShader);
+
+    glDeleteProgram(program);
 
     SDL_GL_DeleteContext(glcontext);
 
