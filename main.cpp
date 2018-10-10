@@ -3,6 +3,7 @@
 #include <GL/glew.h>
 #include <fstream>
 #include <iostream>
+#include <glm/glm.hpp>
 
 #define fps 60
 
@@ -70,6 +71,26 @@ int main()
     glValidateProgram(program);
     glUseProgram(program);
 
+    glm::vec3 triangle[] = {
+        glm::vec3(-0.5, -0.5, 0),
+        glm::vec3(0, 0.5, 0),
+        glm::vec3(0.5, -0.5, 0)
+    };
+    GLuint vertexArray;
+    GLuint vertexBuffers[1];
+    unsigned int drawCount = 3;
+    glGenVertexArrays(1, &vertexArray);
+    glBindVertexArray(vertexArray);
+
+    glGenBuffers(1, vertexBuffers);
+    glBindBuffer(GL_ARRAY_BUFFER, vertexBuffers[0]);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(triangle), triangle, GL_STATIC_DRAW);
+
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
+
+    glBindVertexArray(0);
+
     unsigned int starting_tick;
     bool running = true;
     SDL_Event e;
@@ -86,6 +107,11 @@ int main()
                 break;
             }
             glClear(GL_COLOR_BUFFER_BIT);
+
+            glBindVertexArray(vertexArray);
+            glDrawArrays(GL_TRIANGLES, 0, drawCount);
+            glBindVertexArray(0);
+
             SDL_GL_SwapWindow(window);
         }
 
@@ -94,6 +120,8 @@ int main()
             SDL_Delay(1000 / fps - (SDL_GetTicks() - starting_tick));
         }
     }
+
+    glDeleteVertexArrays(1, &vertexArray);
 
     glDetachShader(program, vShader);
     glDeleteShader(vShader);
