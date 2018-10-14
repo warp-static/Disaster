@@ -1,7 +1,0 @@
-[
-{
-  "directory": "/home/richard/Disaster/build",
-  "command": "/usr/bin/c++    -g   -o CMakeFiles/Disaster.dir/main.cpp.o -c /home/richard/Disaster/main.cpp",
-  "file": "/home/richard/Disaster/main.cpp"
-}
-]

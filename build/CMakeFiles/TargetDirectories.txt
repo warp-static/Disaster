@@ -1,3 +1,0 @@
-/home/richard/Disaster/build/CMakeFiles/rebuild_cache.dir
-/home/richard/Disaster/build/CMakeFiles/edit_cache.dir
-/home/richard/Disaster/build/CMakeFiles/Disaster.dir
