@@ -3,8 +3,11 @@
 #include <GL/glew.h>
 #include <fstream>
 #include <glm/glm.hpp>
+#include <string>
 
 #define fps 60
+
+#undef main
 
 int main()
 {
@@ -164,4 +167,6 @@ int main()
     SDL_DestroyWindow(window);
 
     SDL_Quit();
+
+    return 0;
 }

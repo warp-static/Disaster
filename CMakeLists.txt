@@ -13,4 +13,6 @@ find_package(GLEW)
 
 find_package(ASSIMP)
 
-target_link_libraries(Disaster ${OPENGL_LIBRARIES} SDL2 GLEW ${ASSIMP_LIBRARIES})
+target_link_libraries(Disaster ${OPENGL_LIBRARIES} SDL2 ${GLEW_LIBRARIES} ${ASSIMP_LIBRARIES})
+
+include_directories(Disaster ${SDL2_INCLUDE_DIRS})

@@ -27,6 +27,7 @@ SET( GLEW_SEARCH_PATHS
 	./lib/glew
 	$ENV{PROGRAMFILES}/GLEW				# WINDOWS
 	"$ENV{_PF86}/GLEW"		# WINDOWS
+	#"C:\\GLEW"
 	~/Library/Frameworks				# MAC
 	/Library/Frameworks					# MAC
 	/usr/local							# LINUX/MAC/UNIX
@@ -65,7 +66,7 @@ FIND_LIBRARY( GLEW_LIBRARIES
 # Check if we found it!
 IF ( GLEW_INCLUDE_DIRS AND GLEW_LIBRARIES )
 	SET( GLEW_FOUND TRUE )
-	MESSAGE( STATUS "Looking for GLEW - found" )
+	MESSAGE( STATUS "Looking for GLEW - found in" ${GLEW_INCLUDE_DIRS} ${GLEW_LIBRARIES})
 ELSE ( GLEW_INCLUDE_DIRS AND GLEW_LIBRARIES )
 	SET( GLEW_FOUND FALSE )
 	MESSAGE( STATUS "Looking for GLEW - not found" )
