@@ -2,7 +2,6 @@
 #include <SDL2/SDL.h>
 #include <GL/glew.h>
 #include <fstream>
-#include <iostream>
 #include <glm/glm.hpp>
 
 #define fps 60
@@ -24,7 +23,7 @@ int main()
 
     GLenum res = glewInit();
 
-    glClearColor(0, 0.4, 0, 0.5);
+    glClearColor(0, 0, 0.1, 0.5);
 
     GLuint program = glCreateProgram();
     GLuint vShader = glCreateShader(GL_VERTEX_SHADER);
@@ -32,7 +31,7 @@ int main()
 
     std::string line;
     std::ifstream vsFile;
-    vsFile.open("./basicShader.vs");
+    vsFile.open("basicShader.vs");
     std::string vsFileText;
     while(vsFile.good())
     {
@@ -40,7 +39,7 @@ int main()
         vsFileText.append(line + "\n");
     }
     std::ifstream fsFile;
-    fsFile.open("./basicShader.fs");
+    fsFile.open("basicShader.fs");
     std::string fsFileText;
     while(fsFile.good())
     {

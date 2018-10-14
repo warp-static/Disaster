@@ -11,7 +11,8 @@ attribute vec3 position;
 
 void main()
 {
-    gl_Position = transform * vec4(position, 1.0);
+    gl_Position = vec4(position, 1);
+    // gl_Position = transform * vec4(position, 1.0);
     // texCoord0 = texCoord;
     // normal0 = (transform * vec4(normal, 0.0)).xyz;
 }
