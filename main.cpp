@@ -21,6 +21,8 @@ int main()
 
     SDL_GLContext glcontext = SDL_GL_CreateContext(window);
 
+    SDL_Renderer *renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED/* | SDL_RENDERER_PRESENTVSYNC*/);
+
     GLenum res = glewInit();
 
     glClearColor(0, 0, 0.1, 0.5);
@@ -94,6 +96,8 @@ int main()
     bool running = true;
     SDL_Event e;
 
+    int pos = 593;
+
     while(running)
     {
         starting_tick = SDL_GetTicks();
@@ -112,11 +116,35 @@ int main()
             glBindVertexArray(0);
 
             SDL_GL_SwapWindow(window);
+
+            SDL_SetRenderDrawColor(renderer, 0xFF, 0xFF, 0xFF, 0xFF);
+            // SDL_RenderClear(renderer);
+
+            SDL_Rect rectangle = {pos, 610, 5, 8};
+            SDL_RenderFillRect(renderer, &rectangle);
+
+            SDL_RenderPresent(renderer);
+
+            if(e.type == SDL_KEYDOWN)
+            {
+                switch(e.key.keysym.sym)
+                {
+                    case SDLK_LEFT:
+                    pos -= 10;
+                    break;
+
+                    case SDLK_RIGHT:
+                    pos += 10;
+                    break;
+                }
+            }
         }
 
-        if((1000 / fps) > SDL_GetTicks() - starting_tick)
+        int frameTime = SDL_GetTicks() - starting_tick;
+
+        if((1000 / fps) > frameTime)
         {
-            SDL_Delay(1000 / fps - (SDL_GetTicks() - starting_tick));
+            SDL_Delay((1000 / fps) - frameTime);
         }
     }
 
@@ -128,6 +156,8 @@ int main()
     glDeleteShader(fShader);
 
     glDeleteProgram(program);
+
+    SDL_DestroyRenderer(renderer);
 
     SDL_GL_DeleteContext(glcontext);
 
